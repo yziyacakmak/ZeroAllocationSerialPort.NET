@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace ZeroAllocationSerialPort.NET
 {
-    internal class ParserAsync(PipeReader reader, int bufferSize = 1024)
+    internal class ParserAsync(PipeReader reader)
     {
         private readonly PipeReader reader = reader;
-        private byte[] buffer = new byte[bufferSize];
         private Task _processingTask;
         private CancellationTokenSource _cancellationTokenSource;
 
@@ -88,7 +87,6 @@ namespace ZeroAllocationSerialPort.NET
 
         private void Consume(in ReadOnlySpan<byte> data)
         {
-            var buffer = this.buffer.AsSpan();
             // Consume data
         }
     }
